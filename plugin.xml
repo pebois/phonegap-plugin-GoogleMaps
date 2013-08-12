@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.kernix.googlemaps"
+    version="1.0.0">
+  <engines>
+    <engine name="cordova" version=">=3.0.0" />
+  </engines>
+  <name>GoogleMaps</name>
+  <description>Google Maps phonegap plugin</description>
+  <author>Pierre-Emmanuel Bois</author>
+  <email>pebois@kernix.com</email>
+  <license>Apache 2.0 License</license>
+  <js-module src="www/googlemaps.js" name="GoogleMaps">
+    <clobbers target="GoogleMaps" />
+  </js-module>
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="GoogleMaps">
+        <param name="ios-package" value="GoogleMaps"/>
+      </feature>
+    </config-file>
+    <header-file src="src/ios/GoogleMaps.h" />
+    <source-file src="src/ios/GoogleMaps.m" />
+    <header-file src="src/ios/GoogleMapsViewController.h" />
+    <source-file src="src/ios/GoogleMapsViewController.m" />
+    <resource-file src="src/ios/GoogleMapsViewController.xib" />
+    <resource-file src="src/ios/GoogleMapsViewControllerIphone5.xib" />
+    <resource-file src="src/ios/GoogleMapsViewControllerIpadLandscape.xib" />
+    <resource-file src="src/ios/GoogleMapsViewControllerIpadPortrait.xib" />
+    <resource-file src="src/ios/button_close.png" />
+    <resource-file src="src/ios/button_close@2x.png" />
+  </platform>
+</plugin>
