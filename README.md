@@ -54,6 +54,11 @@ GoogleMaps.addMarkers(markers, function (marker) {
 );
 ```
 
+### close ###
+```
+GoogleMaps.close();
+```
+
 ## Licence ##
 ```
 The MIT License (MIT)
