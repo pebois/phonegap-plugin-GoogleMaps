@@ -68,8 +68,14 @@
 }
 - (void)close:(id)sender
 {
-    [GoogleMapsView removeFromSuperview];
-    [self.view removeFromSuperview];
+    self.view.alpha = 1.f;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.5];
+    self.view.alpha = 0.f;
+    [UIView setAnimationDelegate:self.view];
+    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
+    [UIView commitAnimations];
+
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
     [plugin.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }

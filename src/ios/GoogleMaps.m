@@ -36,7 +36,12 @@
             [googleMapsViewController setPlugin:self];
             [googleMapsViewController setCommand:command];
             [googleMapsViewController setMarkers:markers];
+            googleMapsViewController.view.alpha = 0.f;
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:.5];
+            googleMapsViewController.view.alpha = 1.f;
             [[[self viewController] view] addSubview:googleMapsViewController.view];
+            [UIView commitAnimations];
         });
     } else {
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
