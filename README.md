@@ -3,15 +3,15 @@ phonegap-plugin-GoogleMaps
 
 Google Maps phonegap plugin
 
-## Adding the Google Maps SDK for iOS to your project ##
-
-https://developers.google.com/maps/documentation/ios/start
-
 ![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample.png)
 
 ## Platforms ##
 
 * IOS
+
+## Adding the Google Maps SDK for iOS to your project ##
+
+https://developers.google.com/maps/documentation/ios/start
 
 ## Using the plugin ##
 
