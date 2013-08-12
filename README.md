@@ -15,7 +15,7 @@ https://developers.google.com/maps/documentation/ios/start
 
 ## Using the plugin ##
 
-### GoogleMaps.addMarkers(markers, tapp_calback, callback) ###
+### GoogleMaps.addMarkers ###
 ```
 var markers = [{id:"105",
                 title:"Théâtre du Châtelet",
@@ -54,7 +54,7 @@ GoogleMaps.addMarkers(markers, function (marker) {
 );
 ```
 
-### GoogleMaps.close() ###
+### GoogleMaps.close ###
 ```
 GoogleMaps.close();
 ```
