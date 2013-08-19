@@ -24,9 +24,6 @@
     <header-file src="src/ios/GoogleMapsViewController.h" />
     <source-file src="src/ios/GoogleMapsViewController.m" />
     <resource-file src="src/ios/GoogleMapsViewController.xib" />
-    <resource-file src="src/ios/GoogleMapsViewControllerIphone5.xib" />
-    <resource-file src="src/ios/GoogleMapsViewControllerIpadLandscape.xib" />
-    <resource-file src="src/ios/GoogleMapsViewControllerIpadPortrait.xib" />
     <resource-file src="src/ios/button_close.png" />
     <resource-file src="src/ios/button_close@2x.png" />
   </platform>

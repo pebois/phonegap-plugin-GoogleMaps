@@ -18,21 +18,7 @@
     NSMutableArray* markers = [command.arguments objectAtIndex:0];
     if (markers != nil && markers.count > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-                if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-                    googleMapsViewController = [[GoogleMapsViewController alloc] initWithNibName:@"GoogleMapsViewControllerIpadPortrait" bundle:nil];
-                } else {
-                    googleMapsViewController = [[GoogleMapsViewController alloc] initWithNibName:@"GoogleMapsViewControllerIpadLandscape" bundle:nil];
-
-                }
-            } else {
-                if ([[UIScreen mainScreen] bounds].size.height == 568) {
-                    googleMapsViewController = [[GoogleMapsViewController alloc] initWithNibName:@"GoogleMapsViewControllerIphone5" bundle:nil];
-                } else {
-                    googleMapsViewController = [[GoogleMapsViewController alloc] initWithNibName:@"GoogleMapsViewController" bundle:nil];
-                }
-            }
+            googleMapsViewController = [[GoogleMapsViewController alloc] initWithNibName:@"GoogleMapsViewController" bundle:nil];
             [googleMapsViewController setPlugin:self];
             [googleMapsViewController setCommand:command];
             [googleMapsViewController setMarkers:markers];
@@ -41,6 +27,7 @@
             [UIView setAnimationDuration:.5];
             googleMapsViewController.view.alpha = 1.f;
             [[[self viewController] view] addSubview:googleMapsViewController.view];
+            [googleMapsViewController.view setFrame:self.webView.frame];
             [UIView commitAnimations];
         });
     } else {
