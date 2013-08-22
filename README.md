@@ -3,8 +3,6 @@ phonegap-plugin-GoogleMaps
 
 Google Maps phonegap plugin
 
-![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample.png)
-
 ## Platforms ##
 
 * IOS
@@ -16,6 +14,7 @@ https://developers.google.com/maps/documentation/ios/start
 ## Using the plugin ##
 
 ### GoogleMaps.addMarkers ###
+![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample1.png)
 ```
 var markers = [{id:"105",
                 title:"Théâtre du Châtelet",
@@ -52,6 +51,16 @@ GoogleMaps.addMarkers(markers, function (marker) {
     console.log(msg);
   }
 );
+```
+
+### GoogleMaps.showPanorama ###
+![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample2.png)
+```
+GoogleMaps.showPanorama({latitude:48.8573679, longitude:2.347562},
+                        {heading:90, pitch:7, zoom: 0},
+                        function (msg) {
+                          console.log(msg);
+                        });
 ```
 
 ### GoogleMaps.close ###
