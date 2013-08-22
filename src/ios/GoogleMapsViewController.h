@@ -10,10 +10,10 @@
 #import <Cordova/CDV.h>
 
 @interface GoogleMapsViewController : UIViewController <GMSMapViewDelegate> {
-    NSMutableArray *markers;
+    NSMutableArray *markers_;
+    GMSCoordinateBounds *bounds_;
     CDVPlugin *plugin;
     CDVInvokedUrlCommand *command;
-    GMSCoordinateBounds *bounds;
     IBOutlet GMSMapView *GoogleMapsView;
 }
 

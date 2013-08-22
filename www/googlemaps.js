@@ -11,6 +11,9 @@ var GoogleMaps = {
         GoogleMaps.markerTappedCallback = tapp_calback;
         cordova.exec(callback, function (err) { console.log(err); }, "GoogleMaps", "addMarkers", [markers]);
     },
+    showPanorama: function (coord, opts, callback) {
+        cordova.exec(callback, function (err) { console.log(err); }, "GoogleMaps", "showPanorama", [coord, opts]);
+    },
     close: function (callback) {
         cordova.exec(callback, function (err) { console.log(err); }, "GoogleMaps", "close", []);
     },

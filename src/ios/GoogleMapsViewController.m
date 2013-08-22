@@ -38,7 +38,7 @@
     [GoogleMapsView setCamera:camera];
     
     GoogleMapsView.delegate = self;
-
+    
     UIButton* myLocationButton = (UIButton*)[[GoogleMapsView subviews] lastObject];
     CGRect frame = myLocationButton.frame;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -66,6 +66,7 @@
         [self autoZoom];
     }
 }
+
 - (void)close:(id)sender
 {
     self.view.alpha = 1.f;
@@ -75,7 +76,7 @@
     [UIView setAnimationDelegate:self.view];
     [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
     [UIView commitAnimations];
-
+    
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
     [plugin.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
@@ -92,12 +93,12 @@
 
 - (void)setMarkers:(NSMutableArray *)markersArray
 {
-    markers = markersArray;
+    markers_ = markersArray;
 }
 
 - (BOOL)hasMarkers
 {
-    if (markers != nil && markers.count > 0) {
+    if (markers_ != nil && markers_.count > 0) {
         return TRUE;
     }
     return FALSE;
@@ -105,9 +106,9 @@
 
 - (void)addMarkers
 {
-    for (int a = 0; a<markers.count; a++)
+    for (int a = 0; a<markers_.count; a++)
     {
-        NSDictionary *markerInfo = [markers objectAtIndex:a];
+        NSDictionary *markerInfo = [markers_ objectAtIndex:a];
         [self addMarker:markerInfo
                    name:[markerInfo objectForKey:@"title"]
                 snippet:[markerInfo objectForKey:@"subtitle"]
@@ -126,15 +127,15 @@
     marker.snippet = snippet;
     marker.animated = YES;
     marker.map = GoogleMapsView;
-    if (bounds == nil) {
-        bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:marker.position coordinate:marker.position];
+    if (bounds_ == nil) {
+        bounds_ = [[GMSCoordinateBounds alloc] initWithCoordinate:marker.position coordinate:marker.position];
     }
-    bounds = [bounds includingCoordinate:marker.position];
+    bounds_ = [bounds_ includingCoordinate:marker.position];
 }
 
 - (void)autoZoom
 {
-    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:100.f];
+    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds_ withPadding:100.f];
     [GoogleMapsView moveCamera:update];
 }
 
@@ -170,11 +171,11 @@
 
 - (void)mapView:(GMSMapView *)mapView didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    NSLog(@"You LongPressed at %f,%f", coordinate.latitude, coordinate.longitude);
+    //NSLog(@"You LongPressed at %f,%f", coordinate.latitude, coordinate.longitude);
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
+    //NSLog(@"You tapped at %f,%f", coordinate.latitude, coordinate.longitude);
 }
 
 @end

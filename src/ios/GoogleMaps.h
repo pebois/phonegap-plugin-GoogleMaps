@@ -6,16 +6,18 @@
 //  MIT Licensed
 
 #import "GoogleMapsViewController.h"
+#import "GooglePanoramaViewController.h"
 
 #import <Cordova/CDV.h>
 #import <UIKit/UIKit.h>
 
 @interface GoogleMaps : CDVPlugin {
-    NSString* callbackId;
     GoogleMapsViewController* googleMapsViewController;
+    GooglePanoramaViewController* googlePanoramaViewController;
 }
 
 - (void)addMarkers:(CDVInvokedUrlCommand*)command;
+- (void)showPanorama:(CDVInvokedUrlCommand*)command;
 - (void)close:(CDVInvokedUrlCommand*)command;
 
 @end
