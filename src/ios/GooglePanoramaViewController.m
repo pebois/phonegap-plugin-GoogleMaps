@@ -97,13 +97,13 @@
 
 - (void)panoramaView:(GMSPanoramaView *)panoramaView
        didMoveCamera:(GMSPanoramaCamera *)camera {
-    NSLog(@"Camera: (%f,%f,%f)", camera.orientation.heading, camera.orientation.pitch, camera.zoom);
+    //NSLog(@"Camera: (%f,%f,%f)", camera.orientation.heading, camera.orientation.pitch, camera.zoom);
 }
 
 - (void)panoramaView:(GMSPanoramaView *)view
    didMoveToPanorama:(GMSPanorama *)panorama
       nearCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSLog(@"didMoveToPanorama");
+    //NSLog(@"didMoveToPanorama");
 }
 
 @end
