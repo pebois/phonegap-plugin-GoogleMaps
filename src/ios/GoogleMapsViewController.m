@@ -71,7 +71,7 @@
 {
     self.view.alpha = 1.f;
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.5];
+    [UIView setAnimationDuration:.3];
     self.view.alpha = 0.f;
     [UIView setAnimationDelegate:self.view];
     [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];

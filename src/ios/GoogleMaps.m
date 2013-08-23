@@ -24,7 +24,7 @@
             [googleMapsViewController setMarkers:markers];
             googleMapsViewController.view.alpha = 0.f;
             [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:.5];
+            [UIView setAnimationDuration:.3];
             googleMapsViewController.view.alpha = 1.f;
             [[[self viewController] view] addSubview:googleMapsViewController.view];
             [googleMapsViewController.view setFrame:self.webView.frame];
@@ -50,7 +50,7 @@
             [googlePanoramaViewController setCamera:opts];
             googlePanoramaViewController.view.alpha = 0.f;
             [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:.5];
+            [UIView setAnimationDuration:.3];
             googlePanoramaViewController.view.alpha = 1.f;
             [[[self viewController] view] addSubview:googlePanoramaViewController.view];
             [googlePanoramaViewController.view setFrame:self.webView.frame];
