@@ -7,9 +7,12 @@
 
 var GoogleMaps = {
     markerTappedCallback: null,
-    addMarkers: function (markers, tapp_calback, callback) {
+    showMarkers: function (markers, tapp_calback, callback) {
         GoogleMaps.markerTappedCallback = tapp_calback;
-        cordova.exec(callback, function (err) { console.log(err); }, "GoogleMaps", "addMarkers", [markers]);
+        cordova.exec(callback, function (err) { console.log(err); }, "GoogleMaps", "showMarkers", [markers]);
+    },
+    showPath: function (markers, enc_path, callback) {
+        cordova.exec(callback, function (err) { console.log(err); }, "GoogleMaps", "showPath", [markers, enc_path]);
     },
     showPanorama: function (coord, opts, callback) {
         cordova.exec(callback, function (err) { console.log(err); }, "GoogleMaps", "showPanorama", [coord, opts]);

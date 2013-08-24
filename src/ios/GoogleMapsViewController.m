@@ -61,6 +61,10 @@
     [button addTarget:self action:@selector(close :) forControlEvents:UIControlEventTouchUpInside];
     [GoogleMapsView addSubview:button];
     
+    if ([self hasPath]) {
+        [self addPath];
+    }
+    
     if ([self hasMarkers]) {
         [self addMarkers];
         [self autoZoom];
@@ -91,6 +95,28 @@
     command = cdvCommand;
 }
 
+- (void)setPath:(NSString *)encPath
+{
+    path_ = encPath;
+}
+
+- (BOOL)hasPath
+{
+    if (path_ != nil && path_.length > 0) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+- (void)addPath
+{
+    GMSPath *path = [GMSPath pathFromEncodedPath:path_];
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeColor = [UIColor blueColor];
+    polyline.strokeWidth = 8.f;
+    polyline.map = GoogleMapsView;
+}
+
 - (void)setMarkers:(NSMutableArray *)markersArray
 {
     markers_ = markersArray;
@@ -106,19 +132,23 @@
 
 - (void)addMarkers
 {
+    GMSMarker *marker;
     for (int a = 0; a<markers_.count; a++)
     {
         NSDictionary *markerInfo = [markers_ objectAtIndex:a];
-        [self addMarker:markerInfo
-                   name:[markerInfo objectForKey:@"title"]
-                snippet:[markerInfo objectForKey:@"subtitle"]
-               latitude:[[markerInfo objectForKey:@"latitude"] doubleValue]
-              longitude:[[markerInfo objectForKey:@"longitude"] doubleValue]];
+        marker = [self addMarker:markerInfo
+                            name:[markerInfo objectForKey:@"title"]
+                         snippet:[markerInfo objectForKey:@"subtitle"]
+                        latitude:[[markerInfo objectForKey:@"latitude"] doubleValue]
+                       longitude:[[markerInfo objectForKey:@"longitude"] doubleValue]];
+    }
+    if ([self hasPath] && marker != nil) {
+        GoogleMapsView.selectedMarker = marker;
     }
     
 }
 
-- (void)addMarker:(id)markerInfo name:(NSString *)name snippet:(NSString *)snippet latitude:(double)latitude longitude:(double)longitude
+- (GMSMarker *)addMarker:(id)markerInfo name:(NSString *)name snippet:(NSString *)snippet latitude:(double)latitude longitude:(double)longitude
 {
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.userData = markerInfo;
@@ -161,6 +191,7 @@
         bounds_ = [[GMSCoordinateBounds alloc] initWithCoordinate:marker.position coordinate:marker.position];
     }
     bounds_ = [bounds_ includingCoordinate:marker.position];
+    return marker;
 }
 
 - (void)autoZoom
@@ -177,7 +208,16 @@
 
 #pragma mark - GMSMapViewDelegate
 
+- (void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    //NSLog(@"You tapped the InfoWindow Of Marker [id:%@]", [marker.userData objectForKey:@"id"]);
+    if ([self hasPath] == FALSE) {
+        NSString *js = [NSString stringWithFormat:@"GoogleMaps.markerTapped('%@');", [marker.userData objectForKey:@"id"]];
+        [plugin writeJavascript:js];
+    }
+}
+
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    //NSLog(@"You tapped the Marker [id:%@]", [marker.userData objectForKey:@"id"]);
     [CATransaction begin];
     [CATransaction setAnimationDuration:2.f];
     
@@ -188,14 +228,9 @@
     [mapView animateToCameraPosition:camera];
     [CATransaction commit];
     
-    
     if (mapView.selectedMarker != marker) {
         return NO;
-    } else {
-        NSString *js = [NSString stringWithFormat:@"GoogleMaps.markerTapped('%@');", [marker.userData objectForKey:@"id"]];
-        [plugin writeJavascript:js];
     }
-    
     return YES;
 }
 

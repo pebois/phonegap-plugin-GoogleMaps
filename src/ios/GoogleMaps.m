@@ -13,7 +13,7 @@
 
 @implementation GoogleMaps
 
-- (void)addMarkers:(CDVInvokedUrlCommand*)command
+- (void)showMarkers:(CDVInvokedUrlCommand*)command
 {
     NSMutableArray* markers = [command.arguments objectAtIndex:0];
     if (markers != nil && markers.count > 0) {
@@ -22,6 +22,32 @@
             [googleMapsViewController setPlugin:self];
             [googleMapsViewController setCommand:command];
             [googleMapsViewController setMarkers:markers];
+            googleMapsViewController.view.alpha = 0.f;
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationDuration:.3];
+            googleMapsViewController.view.alpha = 1.f;
+            [[[self viewController] view] addSubview:googleMapsViewController.view];
+            [googleMapsViewController.view setFrame:self.webView.frame];
+            [UIView commitAnimations];
+        });
+    } else {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+}
+
+- (void)showPath:(CDVInvokedUrlCommand*)command
+{
+    NSMutableArray* markers = [command.arguments objectAtIndex:0];
+    NSString* encPath = [command.arguments objectAtIndex:1];
+    
+    if (markers != nil && markers.count > 0 && encPath != nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            googleMapsViewController = [[GoogleMapsViewController alloc] initWithNibName:@"GoogleMapsViewController" bundle:nil];
+            [googleMapsViewController setPlugin:self];
+            [googleMapsViewController setCommand:command];
+            [googleMapsViewController setMarkers:markers];
+            [googleMapsViewController setPath:encPath];
             googleMapsViewController.view.alpha = 0.f;
             [UIView beginAnimations:nil context:nil];
             [UIView setAnimationDuration:.3];

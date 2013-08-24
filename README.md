@@ -13,7 +13,7 @@ https://developers.google.com/maps/documentation/ios/start
 
 ## Using the plugin ##
 
-### GoogleMaps.addMarkers ###
+### GoogleMaps.showMarkers ###
 ![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample1.png)
 ```
 var markers = [{id:"105",
@@ -42,7 +42,7 @@ var markers = [{id:"105",
                 latitude:48.8774069,
                 longitude:2.3373855}];
 
-GoogleMaps.addMarkers(markers, function (marker) {
+GoogleMaps.showMarkers(markers, function (marker) {
     // Tapped marker callback
     console.log("Marker [id:"+marker+"] tapped !");
     GoogleMaps.close();
@@ -51,6 +51,19 @@ GoogleMaps.addMarkers(markers, function (marker) {
     console.log(msg);
   }
 );
+```
+
+### GoogleMaps.showPath ###
+![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample3.png)
+```
+var markers = [{subtitle:"Saint-Sulpice, 75006 Paris, France", title:"Départ", latitude:48.8516, longitude:2.33114, color:"yellow"},
+               {subtitle:"Rue de Rivoli, 75001 Paris, France", title:"Arrivée", latitude:48.8633, longitude:2.33346, color:"yellow"}];
+var encPath = "oidiHshfMmAtFGFIDg@e@wA~Bg@Q_Ag@}EiCWScA]{@[aBeAoCiBoC{BsBaBoBuACEACAKBQIGc@|B]Nc@VCAmAk@k@WiB{@KEQFWIYMmCuASIQFKNMHQBOAOIKMOk@G]_AqAU]m@[k@a@SSKb@_BdH";
+GoogleMaps.showPath(markers,
+                    encPath,
+                    function (msg) {
+                        console.log(msg);
+                    });
 ```
 
 ### GoogleMaps.showPanorama ###

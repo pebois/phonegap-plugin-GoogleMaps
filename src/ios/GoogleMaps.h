@@ -16,7 +16,8 @@
     GooglePanoramaViewController* googlePanoramaViewController;
 }
 
-- (void)addMarkers:(CDVInvokedUrlCommand*)command;
+- (void)showMarkers:(CDVInvokedUrlCommand*)command;
+- (void)showPath:(CDVInvokedUrlCommand*)command;
 - (void)showPanorama:(CDVInvokedUrlCommand*)command;
 - (void)close:(CDVInvokedUrlCommand*)command;
 
