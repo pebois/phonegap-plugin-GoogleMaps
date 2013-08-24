@@ -56,9 +56,19 @@ GoogleMaps.showMarkers(markers, function (marker) {
 ### GoogleMaps.showPath ###
 ![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample3.png)
 ```
-var markers = [{subtitle:"Saint-Sulpice, 75006 Paris, France", title:"Départ", latitude:48.8516, longitude:2.33114, color:"yellow"},
-               {subtitle:"Rue de Rivoli, 75001 Paris, France", title:"Arrivée", latitude:48.8633, longitude:2.33346, color:"yellow"}];
+var markers = [{title:"Départ",
+                subtitle:"Saint-Sulpice, 75006 Paris, France",
+                latitude:48.8516,
+                longitude:2.33114,
+                color:"yellow"},
+               {title:"Arrivée",
+                subtitle:"Rue de Rivoli, 75001 Paris, France",
+                latitude:48.8633,
+                longitude:2.33346,
+                color:"yellow"}];
+                
 var encPath = "oidiHshfMmAtFGFIDg@e@wA~Bg@Q_Ag@}EiCWScA]{@[aBeAoCiBoC{BsBaBoBuACEACAKBQIGc@|B]Nc@VCAmAk@k@WiB{@KEQFWIYMmCuASIQFKNMHQBOAOIKMOk@G]_AqAU]m@[k@a@SSKb@_BdH";
+
 GoogleMaps.showPath(markers,
                     encPath,
                     function (msg) {
