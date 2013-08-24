@@ -125,6 +125,36 @@
     marker.position = CLLocationCoordinate2DMake(latitude, longitude);
     marker.title = name;
     marker.snippet = snippet;
+    NSString *color = [markerInfo objectForKey:@"color"];
+    if ([color isEqual:@"black"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
+    } else if ([color isEqual:@"blue"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor blueColor]];
+    } else if ([color isEqual:@"brown"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor brownColor]];
+    } else if ([color isEqual:@"cyan"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor cyanColor]];
+    } else if ([color isEqual:@"darkgray"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor darkGrayColor]];
+    } else if ([color isEqual:@"gray"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor grayColor]];
+    } else if ([color isEqual:@"green"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+    } else if ([color isEqual:@"lightgray"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor lightGrayColor]];
+    } else if ([color isEqual:@"magenta"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor magentaColor]];
+    } else if ([color isEqual:@"orange"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+    } else if ([color isEqual:@"purple"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor purpleColor]];
+    } else if ([color isEqual:@"red"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor redColor]];
+    } else if ([color isEqual:@"white"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor whiteColor]];
+    } else if ([color isEqual:@"yellow"]) {
+        marker.icon = [GMSMarker markerImageWithColor:[UIColor yellowColor]];
+    }
     marker.animated = YES;
     marker.map = GoogleMapsView;
     if (bounds_ == nil) {
