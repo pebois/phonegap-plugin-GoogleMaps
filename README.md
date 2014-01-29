@@ -15,7 +15,7 @@ https://developers.google.com/maps/documentation/ios/start
 
 ### GoogleMaps.showMarkers ###
 ![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample1.png)
-```
+```js
 var markers = [{id:"105",
                 title:"Théâtre du Châtelet",
                 subtitle:"Spectacle › Théâtre",
@@ -55,7 +55,7 @@ GoogleMaps.showMarkers(markers, function (marker) {
 
 ### GoogleMaps.showPath ###
 ![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample3.png)
-```
+```js
 var markers = [{title:"Départ",
                 subtitle:"Saint-Sulpice, 75006 Paris, France",
                 latitude:48.8516,
@@ -78,7 +78,7 @@ GoogleMaps.showPath(markers,
 
 ### GoogleMaps.showPanorama ###
 ![screenshot](https://raw.github.com/pebois/phonegap-plugin-GoogleMaps/master/sample2.png)
-```
+````js
 GoogleMaps.showPanorama({latitude:48.8573679, longitude:2.347562},
                         {heading:90, pitch:7, zoom: 0},
                         function (msg) {
@@ -87,7 +87,7 @@ GoogleMaps.showPanorama({latitude:48.8573679, longitude:2.347562},
 ```
 
 ### GoogleMaps.close ###
-```
+```js
 GoogleMaps.close();
 ```
 
